@@ -1,3 +1,4 @@
+# google_compute_instance.redis:
 resource "google_compute_instance" "redis" {
   can_ip_forward      = false
   deletion_protection = false

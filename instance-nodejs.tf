@@ -1,27 +1,25 @@
-resource "google_compute_instance" "postgresql" {
+# google_compute_instance.nodejs:
+resource "google_compute_instance" "nodejs" {
   can_ip_forward      = false
   deletion_protection = false
   enable_display      = false
   guest_accelerator   = []
   labels              = {}
-  machine_type        = "e2-small"
+  machine_type        = "e2-micro"
   metadata            = {}
-  name                = "postgresql"
+  name                = "nodejs"
   project             = "ppds-apple"
   resource_policies   = []
-  tags = [
-    "postgresql",
-  ]
-  zone = "asia-southeast1-c"
+  tags                = []
+  zone                = "asia-southeast1-c"
 
   boot_disk {
     auto_delete = true
-    device_name = "postgresql"
+    device_name = "ecommerce"
     mode        = "READ_WRITE"
-    source      = "https://www.googleapis.com/compute/v1/projects/ppds-apple/zones/asia-southeast1-c/disks/postgresql"
+    source      = "https://www.googleapis.com/compute/v1/projects/ppds-apple/zones/asia-southeast1-c/disks/nodejs"
 
     initialize_params {
-      image  = "https://www.googleapis.com/compute/v1/projects/ubuntu-os-cloud/global/images/ubuntu-2010-groovy-v20210130"
       labels = {}
       size   = 10
       type   = "pd-standard"
@@ -34,12 +32,12 @@ resource "google_compute_instance" "postgresql" {
 
   network_interface {
     network            = "https://www.googleapis.com/compute/v1/projects/ppds-apple/global/networks/default"
-    network_ip         = "10.148.0.2"
+    network_ip         = "10.148.0.9"
     subnetwork         = "https://www.googleapis.com/compute/v1/projects/ppds-apple/regions/asia-southeast1/subnetworks/default"
     subnetwork_project = "ppds-apple"
 
     access_config {
-      nat_ip       = "34.87.62.191"
+      nat_ip       = "34.87.156.250"
       network_tier = "PREMIUM"
     }
   }
