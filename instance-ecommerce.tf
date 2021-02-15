@@ -1,5 +1,10 @@
 # google_compute_instance.ecommerce:
 resource "google_compute_instance" "ecommerce" {
+  depends_on = [
+    google_compute_instance.nodejs,
+    google_sql_database_instance.ecommerce
+  ]
+
   can_ip_forward      = false
   deletion_protection = false
   enable_display      = false

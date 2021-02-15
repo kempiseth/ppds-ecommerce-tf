@@ -1,5 +1,7 @@
 # google_compute_instance.nodejs:
 resource "google_compute_instance" "nodejs" {
+  depends_on = [google_compute_instance.redis]
+
   can_ip_forward      = false
   deletion_protection = false
   enable_display      = false
